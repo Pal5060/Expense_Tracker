@@ -1,20 +1,36 @@
 # Loop Expense Tracker
 
-Loop is a Flutter expense tracker app with Firebase authentication, local expense storage, category-based analysis, and multi-currency support. Users can sign up, log in, add income or expense entries, filter transactions, and review spending patterns through charts.
+Loop Expense Tracker is a Flutter mobile app for tracking daily income and expenses. It includes Firebase authentication, local SQLite storage, category-based transaction management, analytics charts, filters, and multi-currency support.
+
+## Overview
+
+This project helps users:
+
+- Create an account and log in securely
+- Add credit and debit transactions
+- Organize expenses by category
+- Filter transactions by date, category, and amount
+- View balance summaries
+- Analyze spending with charts
+- Store preferred currency locally
 
 ## Features
 
 - Firebase email/password authentication
-- Splash screen with automatic login check
+- Splash screen with auto-login check
+- Sign up, login, and forgot password flow
 - Add, edit, and delete transactions
-- Credit and debit transaction support
-- Category picker with grouped expense categories
-- Date, amount, and category-based filtering
-- Expense summary cards for credit, debit, and balance
+- Credit and debit support
+- Category picker for transactions
+- Multi-currency selection
+- Expense filtering by:
+  - Date range
+  - Category
+  - Minimum and maximum amount
+- Transaction history screen
 - Pie chart analytics using `fl_chart`
-- Currency selection saved with `SharedPreferences`
-- Local transaction storage with SQLite (`sqflite`)
-- Profile/settings screen with logout, FAQ, and support options
+- Expense chart with category breakdown
+- Settings page with FAQ, support, and logout
 
 ## Tech Stack
 
@@ -31,43 +47,73 @@ Loop is a Flutter expense tracker app with Firebase authentication, local expens
 
 ```text
 lib/
-  main.dart                   App entry point and route setup
-  splash_screen.dart          Startup screen and auth redirect
-  login_page.dart             Login UI and Firebase sign-in
-  signup_page.dart            Registration UI and Firestore user creation
-  forgot_password_page.dart   Password reset flow
-  home_page.dart              Dashboard, summary cards, recent transactions
-  add_expense_page.dart       Add/edit expense form
-  view_all_expenses_page.dart Full transaction list with edit/delete
-  filter_expense_page.dart    Date/category/amount filters
-  expense_chart.dart          Pie chart analytics
-  settings_page.dart          Settings, FAQ, support, logout
-  expense_database.dart       SQLite database helper
-  expense_model.dart          Expense data model
-  expense_category.dart       Expense category definitions
+  main.dart
+  splash_screen.dart
+  login_page.dart
+  signup_page.dart
+  forgot_password_page.dart
+  home_page.dart
+  add_expense_page.dart
+  view_all_expenses_page.dart
+  filter_expense_page.dart
+  expense_chart.dart
+  settings_page.dart
+  expense_database.dart
+  expense_model.dart
+  expense_category.dart
+  category_picker_page.dart
+  CurrencySelectorPage.dart
+  SelectCategoriesPage.dart
 ```
 
-## How It Works
+## Screenshots
 
-- User accounts are handled with Firebase Authentication.
-- User profile details such as username are stored in Cloud Firestore.
-- Expense records are stored locally in SQLite and linked to the logged-in user's `uid`.
-- The selected currency is stored locally with `SharedPreferences`.
-- Charts are generated from the locally stored expense data.
+Add your app screenshots inside `docs/screenshots/` with the exact filenames below:
+
+- `splash-screen.png`
+- `login-screen.png`
+- `signup-screen.png`
+- `home-screen.png`
+- `add-expense-screen.png`
+- `all-expenses-screen.png`
+- `filter-screen.png`
+- `chart-screen.png`
+- `settings-screen.png`
+
+After you add them, this section will show correctly on GitHub:
+
+| Splash | Login | Signup |
+|---|---|---|
+| !Splash Screen | !Login Screen | !Signup Screen |
+
+| Home | Add Expense | All Expenses |
+|---|---|---|
+| !Home Screen | !Add Expense Screen | !All Expenses Screen |
+
+| Filter | Chart | Settings |
+|---|---|---|
+| !Filter Screen | !Chart Screen | !Settings Screen |
 
 ## Prerequisites
 
-Make sure you have:
+Before running this project, make sure you have:
 
 - Flutter SDK installed
-- Dart SDK compatible with Flutter
-- Android Studio or VS Code with Flutter extensions
-- An emulator or physical device
-- A Firebase project for authentication and Firestore
+- Android Studio or VS Code
+- Flutter and Dart extensions
+- A running Android emulator or physical device
+- A Firebase project
 
-## Setup
+## Installation
 
-1. Install dependencies:
+### 1. Clone the repository
+
+```bash
+git clone <your-repository-url>
+cd loop
+```
+
+### 2. Install dependencies
 
 ```bash
 flutter pub get
@@ -124,4 +170,3 @@ flutter build apk
 ## License
 
 This project does not currently include a license file.
-# Expense_Tracker
