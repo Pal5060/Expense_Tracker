@@ -28,7 +28,6 @@ This project helps users:
   - Category
   - Minimum and maximum amount
 - Transaction history screen
-- Pie chart analytics using `fl_chart`
 - Expense chart with category breakdown
 - Settings page with FAQ, support, and logout
 
@@ -38,8 +37,8 @@ This project helps users:
 - Dart
 - Firebase Authentication
 - Cloud Firestore
-- SQLite via `sqflite`
-- `SharedPreferences`
+- SQLite (`sqflite`)
+- Shared Preferences
 - `fl_chart`
 - `google_fonts`
 
@@ -84,15 +83,15 @@ After you add them, this section will show correctly on GitHub:
 
 | Splash | Login | Signup |
 |---|---|---|
-| !Splash Screen | !Login Screen | !Signup Screen |
+| ![Splash Screen](docs/screenshots/splash-screen.png) | ![Login Screen](docs/screenshots/login-screen.png) | ![Signup Screen](docs/screenshots/signup-screen.png) |
 
 | Home | Add Expense | All Expenses |
 |---|---|---|
-| !Home Screen | !Add Expense Screen | !All Expenses Screen |
+| ![Home Screen](docs/screenshots/home-screen.png) | ![Add Expense Screen](docs/screenshots/add-expense-screen.png) | ![All Expenses Screen](docs/screenshots/all-expenses-screen.png) |
 
 | Filter | Chart | Settings |
 |---|---|---|
-| !Filter Screen | !Chart Screen | !Settings Screen |
+| ![Filter Screen](docs/screenshots/filter-screen.png) | ![Chart Screen](docs/screenshots/chart-screen.png) | ![Settings Screen](docs/screenshots/settings-screen.png) |
 
 ## Prerequisites
 
@@ -119,41 +118,106 @@ cd loop
 flutter pub get
 ```
 
-2. Firebase setup:
+### 3. Firebase setup
 
-- Android Firebase config is already present in `android/app/google-services.json`.
-- This app initializes Firebase with `Firebase.initializeApp()`, so the native Firebase platform setup must be valid for each platform you run.
-- If you want to run on iOS, add the missing `GoogleService-Info.plist` to `ios/Runner/`.
+This project already contains:
 
-3. Run the app:
+- `android/app/google-services.json`
+
+You still need to verify your Firebase project settings and platform setup.
+
+For iOS, add:
+
+- `ios/Runner/GoogleService-Info.plist`
+
+Also make sure Firebase Authentication and Cloud Firestore are enabled in the Firebase Console.
+
+### 4. Run the project
 
 ```bash
 flutter run
 ```
 
+## How the App Works
+
+### Authentication
+
+- Users sign up with username, email, and password
+- Users log in with Firebase Authentication
+- Forgot password sends a password reset email
+
+### Expense Storage
+
+- Expense data is stored locally using SQLite
+- Each expense is connected to the logged-in user's `uid`
+- Currency preference is stored using Shared Preferences
+
+### Analytics
+
+- The app calculates credit, debit, and balance
+- Pie charts display category-wise transaction breakdown
+
 ## Main Screens
 
-- `SplashScreen`: checks whether the user is already signed in
-- `LoginPage`: email/password login
-- `SignupPage`: account creation with username
-- `HomePage`: recent transactions, balance summary, and navigation drawer
-- `AddExpensePage`: create or update a transaction
-- `ViewAllExpensesPage`: browse all transactions and delete entries
-- `ExpenseChart`: category breakdown and totals
-- `FilterExpensePage`: refine results by date, category, and amount
-- `SettingsPage`: FAQ, support, statistics, and logout
+### Splash Screen
 
-## Data Notes
+Checks whether the user is already logged in and redirects to the correct page.
 
-- Expenses include `title`, `amount`, `category`, `date`, `isCredit`, `userId`, and `currency`.
-- The local database file is `expenses.db`.
-- Transactions are ordered by date in descending order.
+### Login Page
 
-## Assets
+Allows users to log in using email and password.
 
-The project currently includes image assets in `assets/` that are used for branding and launcher icons.
+### Signup Page
 
-## Useful Commands
+Allows users to create an account and stores user details in Firestore.
+
+### Home Page
+
+Displays:
+
+- Balance summary
+- Recent transactions
+- Navigation drawer
+- Access to filters, chart, settings, and currency selector
+
+### Add Expense Page
+
+Lets the user:
+
+- Enter title
+- Enter amount
+- Choose category
+- Select date and time
+- Mark transaction as credit or debit
+
+### View All Expenses Page
+
+Shows the full transaction list with edit and delete options.
+
+### Filter Expense Page
+
+Filters transactions by:
+
+- Date range
+- Category
+- Minimum amount
+- Maximum amount
+
+### Expense Chart Page
+
+Displays visual analytics using a pie chart.
+
+### Settings Page
+
+Includes:
+
+- Home shortcut
+- Statistics
+- FAQ
+- Contact support
+- Logout
+
+## Commands
 
 ```bash
 flutter pub get
@@ -162,11 +226,41 @@ flutter run
 flutter build apk
 ```
 
-## Current Repository Notes
+## GitHub Upload Instructions
 
-- The app description in `pubspec.yaml` is still the default Flutter placeholder and can be updated later.
-- Android Firebase is configured in the repo, while iOS Firebase setup appears incomplete.
+### If you want this file as your main GitHub README
+
+1. Keep this file in the project root.
+2. Rename `README_GITHUB.md` to `README.md`, or copy its content into your main `README.md`.
+3. Push the project to GitHub.
+
+### If you want screenshots to show on GitHub
+
+1. Open the folder `docs/screenshots/`
+2. Add your screenshots using the exact filenames listed in the Screenshots section
+3. Commit and push the images to GitHub
+4. GitHub will automatically render them inside the README
+
+## Suggested Screenshot Order
+
+Take screenshots in this order:
+
+1. Splash screen
+2. Login screen
+3. Signup screen
+4. Home screen
+5. Add expense screen
+6. All expenses screen
+7. Filter screen
+8. Chart screen
+9. Settings screen
+
+## Notes
+
+- Android Firebase config is already present in the repository
+- iOS Firebase config is not currently included
+- The app uses local SQLite storage for expense records
 
 ## License
 
-This project does not currently include a license file.
+This project currently does not include a license file.
